@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>11月案例点</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<style>
+    .mapboxgl-popup {
+        max-width: 200px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        padding-bottom: 0;
+    }
+</style>
+<div id="map"></div>
+
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoidG9rZW4tZGZnZWd0IiwiYSI6ImNsNXJodGVpdjI3ZmUza253djVvdWlicGUifQ.w4_-0X6l__soxEBuZjyvIA';
+    const map = new mapboxgl.Map({
+        container: 'map',
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: 'mapbox://styles/token-dfgegt/clgdecvwt005301l0ng0xj346',
+        center: [114.198 ,22.325],
+        zoom: 10.1
+    });
+
+    map.on('load', () => {
+        map.addSource('places', {
+            'type': 'geojson',
+            'data':{
+                "type": "FeatureCollection",
+                "name": "11月点",
+                "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::4490" } },
+                "features": [
+                { "type": "Feature", "properties": { "Id": 1, "Name": "湾仔", "Instance": "暴徒打砸新华社亚太总分社办公大楼并纵火，行径极其野蛮" }, "geometry": { "type": "Point", "coordinates": [ 114.18195809640703, 22.276326599017722 ] } },
+                { "type": "Feature", "properties": { "Id": 3, "Name": "香港科技大学", "Instance": "暴徒在校园内打砸滋事，行为恶劣，有学生被数十名暴徒围殴" }, "geometry": { "type": "Point", "coordinates": [ 114.27068508382574, 22.334440692275269 ] } },
+                { "type": "Feature", "properties": { "Id": 4, "Name": "屯门", "Instance": "立法会爱国议员何军尧于屯门摆街站时，遭一名假扮支持者的暴徒以利刀刺伤左胸" }, "geometry": { "type": "Point", "coordinates": [ 113.97632553198531, 22.392895721074979 ] } },
+                { "type": "Feature", "properties": { "Id": 5, "Name": "香港中文大学", "Instance": "香港中文大学毕业典礼，多名暴徒在校园内打砸滋事，行为恶劣" }, "geometry": { "type": "Point", "coordinates": [ 114.208979233019676, 22.415083262205631 ] } },
+                { "type": "Feature", "properties": { "Id": 6, "Name": "西湾河", "Instance": "多名暴徒试图抢夺警员配枪，警员被迫开枪自卫" }, "geometry": { "type": "Point", "coordinates": [ 114.226051865736281, 22.280071157571683 ] } },
+                { "type": "Feature", "properties": { "Id": 7, "Name": "中环", "Instance": "多名暴徒在香港中环堵路，意图阻碍全港交通" }, "geometry": { "type": "Point", "coordinates": [ 114.153768617327358, 22.285943964766698 ] } },
+                { "type": "Feature", "properties": { "Id": 8, "Name": "沙田", "Instance": "火烧沙田法院" }, "geometry": { "type": "Point", "coordinates": [ 114.195020539631756, 22.379087965839929 ] } }
+                ]
+                }
+
+        })
+        // Add a layer showing the places.
+        map.addLayer({
+            'id': 'places',
+            'type': 'circle',
+            'source': 'places',
+            'paint': {
+                'circle-color': '#8B0000',
+                'circle-radius': 3,
+                'circle-stroke-width': 1,
+                'circle-stroke-color': 'white'
+            }
+        });
+        // Create a popup, but don't add it to the map yet.
+        const popup1 = new mapboxgl.Popup({
+            offset:5,
+            closeButton: true,
+            closeOnClick: false,
+            maxWidth:'220px',
+            anchor:'top-right'
+        }).setLngLat([ 114.18195809640703, 22.276326599017722 ]).setHTML('<h2 style="color:#33CC66">湾仔</h2><h3>暴徒打砸新华社亚太总分社办公大楼并纵火，行径极其野蛮</h3><img src="11-1.png" width=100px />').addTo(map);
+        
+        const popup2 = new mapboxgl.Popup({
+            offset:200,
+            closeButton: true,
+            closeOnClick: false,
+            maxWidth:'200px',
+            anchor:'left'
+        }).setLngLat([ 114.27068508382574, 22.334440692275269 ]).setHTML('<h2 style="color:#FF66CC">香港科技大学</h2><h3>暴徒在校园内打砸滋事，行为恶劣，有学生被数十名暴徒围殴;殴打警察及记者</h3><img src="11-2.png" width=100px />').addTo(map);
+        const popup3 = new mapboxgl.Popup({
+            offset:5,
+            closeButton: true,
+            closeOnClick: false,
+            maxWidth:'200px',
+            anchor:'top'
+        }).setLngLat([ 113.97632553198531, 22.392895721074979 ]).setHTML('<h2 style="color:#FF7F50">屯门</h2><h3>立法会爱国议员何军尧于屯门摆街站时，遭一名假扮支持者的暴徒以利刀刺伤左胸</h3><img src="11-3.png" width=100px />').addTo(map);
+        const popup4 = new mapboxgl.Popup({
+            offset:5,
+            closeButton: true,
+            closeOnClick: false,
+            maxWidth:'240px',
+            anchor:'left'
+        }).setLngLat([ 114.208979233019676, 22.415083262205631 ]).setHTML('<h2 style="color:#1E90FF">香港中文大学</h2><h3>香港中文大学毕业典礼，多名暴徒在校园内打砸滋事，行为恶劣</h3><img src="11-4.png" width=100px />').addTo(map);
+        const popup5 = new mapboxgl.Popup({
+            offset:5,
+            closeButton: true,
+            closeOnClick: false,
+            maxWidth:'240px',
+            anchor:'top-left'
+        }).setLngLat([ 114.226051865736281, 22.280071157571683 ]).setHTML('<h2 style="color:#87CEFA">西湾河</h2><h3>多名暴徒试图抢夺警员配枪，警员被迫开枪自卫;殴打警察及记者</h3><img src="11-5.png" width=100px />').addTo(map);
+        const popup6 = new mapboxgl.Popup({
+            offset:5,
+            closeButton: true,
+            closeOnClick: false,
+            maxWidth:'180px',
+            anchor:'bottom-right'
+        }).setLngLat([ 114.153768617327358, 22.285943964766698 ]).setHTML('<h2 style="color:#C71585">中环</h2><h3>多名暴徒在香港中环堵路，意图阻碍全港交通</h3><img src="11-6.png" width=100px />').addTo(map);
+        const popup7 = new mapboxgl.Popup({
+            offset:5,
+            closeButton: true,
+            closeOnClick: false,
+            maxWidth:'300px',
+            anchor:'bottom-right'
+        }).setLngLat([ 114.195020539631756, 22.379087965839929 ]).setHTML('<h2 style="color:#9966CC">沙田</h2><h3>火烧沙田法院</h3><img src="11-7.png" width=80px />').addTo(map);
+    });
+
+</script>
+
+</body>
+</html>
